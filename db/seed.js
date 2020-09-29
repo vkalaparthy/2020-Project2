@@ -4,7 +4,6 @@ module.exports = (db) => {
     lastName: 'Gates',
     email: 'adam@gates.com',
     password: process.env.ADMIN_USER_PWD,
-    gender:
     isAdmin: true
   }).then(() => {
     db.User.create({
@@ -12,7 +11,6 @@ module.exports = (db) => {
       lastName: 'Pearson',
       email: 'uma@pearson.com',
       password: process.env.USER_PWD,
-      gender:
       isAdmin: false
     }).then(() => {
       db.Example.create({
