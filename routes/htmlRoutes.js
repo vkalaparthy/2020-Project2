@@ -80,6 +80,7 @@ module.exports = (db) => {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
           example: dbExample
+          // data
         });
       });
     } else {
