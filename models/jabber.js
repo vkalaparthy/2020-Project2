@@ -3,7 +3,8 @@ const { Sequelize } = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
   const Jabber = sequelize.define('Jabber', {
     description: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     place: {
       type: DataTypes.STRING
