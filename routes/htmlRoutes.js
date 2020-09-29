@@ -32,40 +32,46 @@ module.exports = (db) => {
 
   // Load dashboard page
   router.get('/', (req, res) => {
+    console.log('In Html route get /');
     if (req.isAuthenticated()) {
-      const user = {
-        user: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render('dashboard', user);
+      db.Jabber.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbJabber) {
+        console.log('after findAll');
+        console.log(dbJabber);
+        res.render('dashboard', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          jabber: dbJabber
+        });
+      });
     } else {
-      res.render('dashboard');
+      res.render('login_dashboard');
     }
   });
 
   // Load dashboard page
   router.get('/dashboard', (req, res) => {
+    console.log('In html route get /dashboard');
     if (req.isAuthenticated()) {
-      const user = {
-        user: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render('dashboard', user);
+      db.Jabber.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbJabber) {
+        res.render('dashboard', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          msg: 'Welcome!',
+          jabber: dbJabber
+        });
+      });
     } else {
-      res.render('dashboard');
+      res.redirect('/');
     }
   });
 
   // Load example index page
-  router.get('/example', function (req, res) {
+  router.get('/jabber', function (req, res) {
     if (req.isAuthenticated()) {
-      db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
-        res.render('example', {
-          userInfo: req.session.passport.user,
-          isloggedin: req.isAuthenticated(),
-          msg: 'Welcome!',
-          examples: dbExamples
-        });
+      res.render('jabber', {
+        userInfo: req.session.passport.user,
+        isloggedin: req.isAuthenticated(),
+        msg: 'Welcome!'
       });
     } else {
       res.redirect('/');
