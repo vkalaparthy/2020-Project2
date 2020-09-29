@@ -13,6 +13,10 @@ module.exports = function (sequelize, DataTypes) {
     lastName: {
       type: DataTypes.STRING
     },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -28,6 +32,10 @@ module.exports = function (sequelize, DataTypes) {
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     timestamps: true,
