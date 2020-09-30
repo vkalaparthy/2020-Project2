@@ -72,6 +72,22 @@ module.exports = (db) => {
     }
   });
 
+  // Load jabber index page
+  router.get('/jabber', function (req, res) {
+    if (req.isAuthenticated()) {
+      db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
+        res.render('jabber', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          msg: 'Welcome!',
+          examples: dbExamples
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
   // Load example page and pass in an example by id
   router.get('/example/:id', function (req, res) {
     if (req.isAuthenticated()) {
@@ -87,6 +103,7 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
+
 
   // Logout
   router.get('/logout', (req, res, next) => {
