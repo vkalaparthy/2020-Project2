@@ -42,7 +42,6 @@ const handleFormSubmit = function (event) {
     state: $state.val().trim(),
     UserId: window.userId
   };
-  
   if (!(jabber.description)) {
     alert('You must enter description!');
     return;
@@ -50,7 +49,6 @@ const handleFormSubmit = function (event) {
 
   API.saveJabber(jabber).then(function () {
     window.location.href = '/';
-    //refreshExamples(); // Handle this later
   });
 
   $place.val('');
