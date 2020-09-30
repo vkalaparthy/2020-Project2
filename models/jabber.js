@@ -13,6 +13,9 @@ module.exports = function (sequelize, DataTypes) {
     },
     created: {
       type: DataTypes.DATE
+    },
+    like: {
+      type: DataTypes.INTEGER
     }
   });
 

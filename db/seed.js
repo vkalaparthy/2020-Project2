@@ -5,7 +5,8 @@ module.exports = (db) => {
     gender: 'Male',
     email: 'adam@gates.com',
     password: process.env.ADMIN_USER_PWD,
-    isAdmin: true
+    isAdmin: true,
+    avatar: 'empty'
   }).then(() => {
     db.User.create({
       firstName: 'Uma',
@@ -13,7 +14,8 @@ module.exports = (db) => {
       gender: 'Female',
       email: 'uma@pearson.com',
       password: process.env.USER_PWD,
-      isAdmin: false
+      isAdmin: false,
+      avatar: 'empty'
     }).then(() => {
       db.Example.create({
         text: 'Sample item',
