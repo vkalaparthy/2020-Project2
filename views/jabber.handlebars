@@ -1,0 +1,26 @@
+{{> nav/nav-block}}
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h2>{{msg}}</h2>
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" aria-describedby="description" placeholder="Enter Description"></textarea>
+            <label for="place">Place</label>
+            <textarea class="form-control" id="place" aria-describedby="place" placeholder="Enter Place"></textarea>
+            <label for="state">State</label>
+            <textarea class="form-control" id="state" aria-describedby="state" placeholder="Enter State"></textarea>
+          </div>
+            <button id="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/js/jabber.js"></script>
+{{> modal/login-block}}
+<script>
+  var userId = {{userInfo.id}};
+</script>
