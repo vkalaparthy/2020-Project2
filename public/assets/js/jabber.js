@@ -48,7 +48,7 @@ const handleFormSubmit = function (event) {
   }
 
   API.saveJabber(jabber).then(function () {
-    window.location.href = '/';
+    window.location.href = '/dashboard';
   });
 
   $place.val('');
