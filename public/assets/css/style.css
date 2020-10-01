@@ -1,7 +1,12 @@
 body {
   color: white;
   background-size: cover;
-  height:100%
+  height:100%;
+  background-color: rgba(233, 242, 250, 0.6);
+}
+
+.navbar {
+  background-color: black!important;
 }
 
 .jumbotron {
@@ -14,7 +19,7 @@ body {
 
 .btn {
   color:white;
-  background:#cadde1;
+  background: rgba(233, 242, 250, 0.6);
   border: 1px solid white;
 }
 
@@ -35,14 +40,23 @@ body {
  height: 65px;
 }
 
+.logo {
+  height: 60px;
+}
+
 .container {
   padding-bottom: 2%;
   margin-top: 10%;
-  background: rgba(86, 101, 115,.6);
+  background: #4092df99;
   height:100%;
   border-radius: .25rem;
   margin-bottom: 2%;
   width: 600px;
+}
+
+.app-container {
+  padding: 2%;
+  margin: 70px;
 }
 
 [data-useremail="true"] {
@@ -67,8 +81,14 @@ hr {
 
 .list-group-item {
   line-height: 2.5;
+  color: black;
 }
 
 .card-body {
   color: #444;
+}
+
+.modal-header,
+.modal-footer {
+  background: #4092df99;
 }

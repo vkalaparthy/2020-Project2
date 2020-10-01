@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Op } = require('sequelize');
 
 module.exports = (db) => {
   // Load register page
@@ -32,35 +33,49 @@ module.exports = (db) => {
 
   // Load dashboard page
   router.get('/', (req, res) => {
+    console.log('In html route get /');
     if (req.isAuthenticated()) {
-      const user = {
-        user: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render('dashboard', user);
+      db.Jabber.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (currentUsersJabber) {
+        console.log('after findAll');
+        console.log(currentUsersJabber);
+        db.Jabber.findAll({ where: { [Op.not]: [ { UserId: req.session.passport.user.id } ] }, raw: true }).then(function (othersJabber) {
+          console.log('Other Jabbers');
+          console.log(othersJabber);
+          res.render('dashboard', {
+            userInfo: req.session.passport.user,
+            isloggedin: req.isAuthenticated(),
+            currentUsersJabber,
+            othersJabber
+          });
+        });
+      });
     } else {
-      res.render('dashboard');
+      res.render('login-dashboard');
     }
   });
 
   // Load dashboard page
   router.get('/dashboard', (req, res) => {
+    console.log('In html route get /dashboard');
     if (req.isAuthenticated()) {
-      const user = {
-        user: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render('dashboard', user);
+      db.Jabber.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbJabber) {
+        res.render('dashboard', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          msg: 'Welcome!',
+          jabber: dbJabber
+        });
+      });
     } else {
-      res.render('dashboard');
+      res.redirect('/');
     }
   });
 
   // Load example index page
-  router.get('/example', function (req, res) {
+  router.get('/jabber', function (req, res) {
     if (req.isAuthenticated()) {
       db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
-        res.render('example', {
+        res.render('jabber', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
           msg: 'Welcome!',
@@ -89,10 +104,10 @@ module.exports = (db) => {
   });
 
   // Load example page and pass in an example by id
-  router.get('/example/:id', function (req, res) {
+  router.get('/jabber/:id', function (req, res) {
     if (req.isAuthenticated()) {
       db.Example.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbExample) {
-        res.render('example-detail', {
+        res.render('jabber-detail', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
           example: dbExample

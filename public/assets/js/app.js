@@ -1,11 +1,23 @@
 $('#add-user').on('click', function (event) {
   event.preventDefault();
+  const gender = $('#genders').val();
+  console.log('***************');
+  console.log(gender);
+  let avatar = '';
+  if (gender === 'Female') {
+    avatar = '/assets/images/woman.jpg';
+  }
+  if (gender === 'Male') {
+    avatar = '/assets/images/man.jpg';
+  }
 
   const newAccount = {
     firstName: $('#inputFirst').val().trim(),
     lastName: $('#inputLast').val().trim(),
     email: $('#inputEmail').val().trim(),
-    password: $('#inputPassword').val().trim()
+    password: $('#inputPassword').val().trim(),
+    gender: gender,
+    avatar: avatar
   };
 
   if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.lastName.length > 0 && newAccount.firstName.length > 0) {

@@ -1,19 +1,52 @@
 {{> nav/nav-block}}
 
-<div id="main-container" class="container">
-  <div class="jumbotron text-center header-wrap" align="center">
-    <p class="lead">Welcome to <strong>Sample App</strong></p>
-    <hr class="my-4">
-    <div>
-      {{#if isloggedin}}
-        You are logged in as {{user.firstName}}
-        <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
-      {{else}}
-        <p>You need to log in to use this app.</p>
-      {{/if}}
-      <h5 id="login-err-msg"></h5>
+{{#if isloggedin}}
+  <div class="app-container">
+    <ul>
+      {{#each currentUsersJabber}}
+        <li data-id="{{this.id}}" class="list-group-item">
+          <p>
+            {{this.description}} 
+            <i class="fas fa-pen text-dark float-right edit-jabber mr-4"></i> </a>
+            <i class='fas fa-trash-alt text-danger float-right delete-jabber mr-4'></i>
+            {{!-- <i class="fas fa-thumbs-up float-right mr-4"> {{this.like}}</i> --}}
+            <i class="fas fa-thumbs-up float-right mr-4"> 10</i></p>
+            <p> {{#if this.place}}
+              at {{this.place}}
+              {{#if this.state}}
+               , {{this.state}} 
+              {{/if}}
+            {{/if}}</p>
+        </li>
+      {{/each}}
+    </ul>
+    <hr>
+    <div class="row">
+      {{#each othersJabber}}
+        <div class="col-sm-6">
+          <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{this.UserId.firstName}}</h5>
+                {{!-- <h5 class="card-title">{{this.User.firstName}}</h5> --}}
+                <p>
+                  {{this.description}} 
+                  <i class="fas fa-pen text-dark float-right edit-jabber mr-4"></i> </a>
+                  <i class='fas fa-trash-alt text-danger float-right delete-jabber mr-4'></i>
+                  {{!-- <i class="fas fa-thumbs-up float-right mr-4"> {{this.like}}</i> --}}
+                  <i class="fas fa-thumbs-up float-right mr-4"> 10</i></p>
+                  <p> {{#if this.place}}
+                    at {{this.place}}
+                    {{#if this.state}}
+                    , {{this.state}} 
+                    {{/if}}
+                  {{/if}}</p>
+                </p>
+              </div>
+          </div>
+        </div>
+      {{/each}}
     </div>
   </div>
-</div>
+{{/if}}
 
 {{> modal/login-block}}
