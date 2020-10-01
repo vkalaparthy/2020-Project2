@@ -5,6 +5,8 @@ module.exports = (passport, db) => {
         return res.json({ message: 'Email and Password required!' });
       }
 
+      console.log(req.body);
+
       db.User.sync().then(() => {
         const newUser = {
           email: req.body.email,
