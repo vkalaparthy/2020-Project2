@@ -50,7 +50,7 @@ module.exports = (db) => {
         });
       });
     } else {
-      res.render('login_dashboard');
+      res.render('login-dashboard');
     }
   });
 
