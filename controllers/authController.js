@@ -1,7 +1,7 @@
 module.exports = (passport, db) => {
   return {
     register: (req, res) => {
-      if (!req.body.email || !req.body.password) {
+      if (!req.body.email || !req.body.password || !(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email))) {
         return res.json({ message: 'Email and Password required!' });
       }
 
@@ -12,7 +12,9 @@ module.exports = (passport, db) => {
           email: req.body.email,
           password: req.body.password,
           firstName: req.body.firstName,
-          lastName: req.body.lastName
+          lastName: req.body.lastName,
+          gender: req.body.gender,
+          avatar: req.body.avatar
         };
 
         return db.User.create(newUser).then(() => {
