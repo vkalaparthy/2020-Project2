@@ -16,9 +16,21 @@ const API = {
       data: JSON.stringify(jabber)
     });
   },
-  getJabber: function () {
+  getJabbers: function () {
     return $.ajax({
       url: 'api/jabbers',
+      type: 'GET'
+    });
+  },
+  updateJabber: function(id) {
+    return $.ajax({
+      url: 'api/jabbers' + id,
+      type: 'PUT'
+    });
+  },
+  getJabber: function (id) {
+    return $.ajax({
+      url: 'api/jabber/' + id,
       type: 'GET'
     });
   },

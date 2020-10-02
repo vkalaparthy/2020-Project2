@@ -88,6 +88,24 @@ hr {
   color: #444;
 }
 
+.card-img-top {
+  width: 20%
+}
+
+.card-title {
+  float: right;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border: solid 1px #4092df99;
+}
+
+.jabber-desc {
+  font-size: large;
+  color: rgb(20, 111, 230);
+  font-style: italic;
+}
 .modal-header,
 .modal-footer {
   background: #4092df99;
