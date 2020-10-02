@@ -24,13 +24,12 @@
     <div class="row">
       {{#each othersJabber}}
         <div class="col-sm-4">
-          <div class="card">
+          <div class="card h-100">
               <div class="card-body">
-                <img src="/assets/images/woman.jpg" class="card-img-top" alt="Avatar">
-                <h5 class="card-title"> Uma </h5>
+                <img src={{this.User.avatar}} class="card-img-top" alt="Avatar">
+                <h5 class="card-text"> {{this.User.firstName}} {{this.User.lastName}}</h5>
                 <p class='jabber-desc'>
                   {{this.description}}
-                  {{!-- <i class="fas fa-thumbs-up float-right mr-4"> {{this.like}}</i> --}}
                   <i class="fas fa-thumbs-up float-right like-jabber mr-4"> 10</i></p>
                   <p> {{#if this.place}}
                     at {{this.place}}

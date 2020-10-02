@@ -92,7 +92,7 @@ hr {
   width: 20%
 }
 
-.card-title {
+.card-text {
   float: right;
 }
 
@@ -104,8 +104,9 @@ hr {
 .jabber-desc {
   font-size: large;
   color: rgb(20, 111, 230);
-  font-style: italic;
+  /* font-style: italic; */
 }
+
 .modal-header,
 .modal-footer {
   background: #4092df99;
