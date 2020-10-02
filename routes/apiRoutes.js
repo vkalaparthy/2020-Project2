@@ -14,14 +14,10 @@ module.exports = (passport, db) => {
   router.post('/user/confirm', AuthController.confirmAuth);
 
   // App
-  router.get('/examples', AppController.getJabbers);
-  router.post('/examples', AppController.createMessage);
-  router.delete('/examples/:id', AppController.deleteMessage);
-
   router.get('/jabbers', AppController.getJabbers);
   router.get('/jabbers/:id', AppController.getJabber);
-  router.put('/jabbers', AppController.updateJabber);
-  router.post('/jabbers', AppController.createJabber);
+  router.put('/jabbers/:id', AppController.updateJabber);
+  router.post('/jabbers', AppController.createJabbers);
   router.delete('/jabbers/:id', AppController.deleteJabber);
 
   return router;
