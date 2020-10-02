@@ -11,9 +11,6 @@ module.exports = function (sequelize, DataTypes) {
     state: {
       type: DataTypes.STRING
     },
-    created: {
-      type: DataTypes.DATE
-    },
     like: {
       type: DataTypes.INTEGER
     }
