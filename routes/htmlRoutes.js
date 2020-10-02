@@ -57,6 +57,7 @@ module.exports = (db) => {
   // Load dashboard page
   router.get('/dashboard', (req, res) => {
     console.log('In html route get /dashboard');
+    // res.redirect('/');
     if (req.isAuthenticated()) {
       db.Jabber.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbJabber) {
         res.render('dashboard', {
