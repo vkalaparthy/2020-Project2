@@ -1,12 +1,11 @@
 module.exports = (passport, db) => {
   return {
     register: (req, res) => {
-      if (!req.body.email || !req.body.password || !(!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email))) {
+      if (!req.body.email || !req.body.password || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(req.body.email))) {
+        console.log('Email password required');
         return res.json({ message: 'Email and Password required!' });
       }
-
       console.log(req.body);
-
       db.User.sync().then(() => {
         const newUser = {
           email: req.body.email,
@@ -16,7 +15,6 @@ module.exports = (passport, db) => {
           gender: req.body.gender,
           avatar: req.body.avatar
         };
-
         return db.User.create(newUser).then(() => {
           res.status(200).json({ message: 'Registered successfully.' });
         });
@@ -69,7 +67,6 @@ module.exports = (passport, db) => {
     confirmAuth: (req, res) => {
       const email = req.body.email;
       const pwd = req.body.password;
-
       db.User.findOne({
         where: { email: email }
       }).then((user) => {
@@ -92,4 +89,4 @@ module.exports = (passport, db) => {
       });
     }
   };
-};
+}
