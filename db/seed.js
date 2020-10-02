@@ -6,7 +6,7 @@ module.exports = (db) => {
     email: 'adam@gates.com',
     password: process.env.ADMIN_USER_PWD,
     isAdmin: true,
-    avatar: 'assets/images/man.jpg'
+    avatar: '/assets/images/man.jpg'
   }).then(() => {
     db.User.create({
       firstName: 'Uma',
