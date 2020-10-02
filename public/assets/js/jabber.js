@@ -22,7 +22,7 @@ const API = {
       type: 'GET'
     });
   },
-  updateJabber: function(id) {
+  updateJabber: function (id) {
     return $.ajax({
       url: 'api/jabbers' + id,
       type: 'PUT'
