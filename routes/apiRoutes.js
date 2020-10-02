@@ -19,7 +19,7 @@ module.exports = (passport, db) => {
   router.delete('/examples/:id', AppController.deleteExample);
 
   router.get('/jabbers', AppController.getJabbers);
-  router.get('/jabbers', AppController.getJabber);
+  router.get('/jabbers/:id', AppController.getJabber);
   router.put('/jabbers', AppController.updateJabber);
   router.post('/jabbers', AppController.createJabber);
   router.delete('/jabbers/:id', AppController.deleteJabber);
