@@ -3,6 +3,8 @@ const $jabberDescription = $('#description');
 const $place = $('#place');
 const $state = $('#state');
 const $submitBtn = $('#submit');
+const $editJabber = $('.edit-jabber');
+const $deleteJabber = $('.delete-jabber');
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -22,15 +24,16 @@ const API = {
       type: 'GET'
     });
   },
-  updateJabber: function (id) {
+  updateJabber: function (jabberData) {
     return $.ajax({
-      url: 'api/jabbers' + id,
-      type: 'PUT'
+      url: 'api/jabber/' + jabberData.id,
+      type: 'PUT',
+      data: jabberData
     });
   },
   getJabber: function (id) {
     return $.ajax({
-      url: 'api/jabber/' + id,
+      url: 'api/jabbers/' + id,
       type: 'GET'
     });
   },
@@ -68,5 +71,30 @@ const handleFormSubmit = function (event) {
   $jabberDescription.val('');
 };
 
+const handleJabberEdit = function (event) {
+  const jabberId = $(event.currentTarget.parentElement.parentElement).attr('id');
+  API.getJabber(jabberId).then((result) => {
+    API.updateJabber(result);
+    console.log('0000000000000000');
+    console.log(result.description);
+    console.log(result);
+    console.log('0000000000000000');
+  });
+};
+
+const handleJabberDelete = function (event) {
+  const jabberId = $(event.currentTarget.parentElement.parentElement).attr('id');
+  // console.log('deleeeeeeet');
+  // console.log(jabberId);
+  API.deleteJabber(jabberId);
+  window.location.href = '/dashboard';
+};
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on('click', handleFormSubmit);
+
+// Add event listeners to the edit icon
+$editJabber.on('click', handleJabberEdit);
+
+// Add event listener to delete the jabber
+$deleteJabber.on('click', handleJabberDelete);
