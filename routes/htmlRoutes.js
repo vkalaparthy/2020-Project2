@@ -119,7 +119,6 @@ module.exports = (db) => {
     }
   });
 
-
   // Logout
   router.get('/logout', (req, res, next) => {
     req.logout();
