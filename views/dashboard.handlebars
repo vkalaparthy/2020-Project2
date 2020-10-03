@@ -4,9 +4,9 @@
   <div class="app-container">
     <ul>
       {{#each currentUsersJabber}}
-        <li id="{{this.id}}" class="list-group-item">
+        <li data-id="{{this.id}}" class="list-group-item">
           <p>
-            <strong> {{this.description}} </strong>
+            {{this.description}}
             <i class="fas fa-pen text-dark float-right edit-jabber mr-4"></i> </a>
             <i class='fas fa-trash-alt text-danger float-right delete-jabber mr-4'></i>
             <i class="fas fa-thumbs-up float-right mr-4">{{this.like}}</i></p>
@@ -16,7 +16,7 @@
                   , {{this.state}} 
                 {{/if}}
               {{/if}}
-            </p>
+            {{/if}}</p>
         </li>
       {{/each}}
     </ul>
