@@ -21,28 +21,27 @@
       {{/each}}
     </ul>
     <hr>
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-3">
       {{#each othersJabber}}
-        <div class="col-sm-4 mt-sm-4">
-          <div class="card h-100">
-              <div class="card-body">
-                <img src={{this.User.avatar}} class="card-img-top" alt="Avatar">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><em>{{this.User.firstName}} {{this.User.lastName}}</em></li>
-                  <li id={{this.id}} class="list-group-item"><strong>{{this.description}} </strong><i data-id="{{this.id}}" class="fas fa-thumbs-up float-right like-jabber mr-4">{{this.like}}</i></li>
-                  <li class="list-group-item">Location: {{#if this.place}}
-                        {{this.place}}
-                        {{#if this.state}}
-                        , {{this.state}}  <a href="https://www.openstreetmap.org/search?query={{this.place}} {{this.state}}" target="_blank">Map to this location</a>
-                        {{/if}}
-                      {{/if}}
-                    </li>
-                </ul>
-              </div>
+        <div class="col mb-4">
+          <div class="card h-100">  
+            <div class="card-body">
+              <img src={{this.User.avatar}} class="card-img-top" alt="Avatar">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong><em>{{this.User.firstName}} {{this.User.lastName}}</em></strong></li>
+                <li id={{this.id}} class="list-group-item"><strong>{{this.description}} </strong><i data-id="{{this.id}}" class="fas fa-thumbs-up float-right like-jabber mr-4">{{this.like}}</i></li>
+                <li class="list-group-item">{{#if this.place}}
+                  {{this.place}}
+                    {{#if this.state}}
+                    , {{this.state}}   <a href="https://www.openstreetmap.org/search?query={{this.place}} {{this.state}}" target="_blank">Location</a>
+                    {{/if}}
+                  {{/if}}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       {{/each}}
-    </div>
   </div>
 {{/if}}
 <script src="/assets/js/jabber.js"></script>
