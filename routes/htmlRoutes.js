@@ -11,6 +11,10 @@ module.exports = (db) => {
     }
   });
 
+  router.get('/register-failed', (req, res) => {
+    res.render('register-failed');
+  });
+
   // Load profile page
   router.get('/profile', (req, res) => {
     if (req.isAuthenticated()) {
