@@ -7,8 +7,8 @@
         <li data-id="{{this.id}}" class="list-group-item">
           <p>
             <strong>{{this.description}}</strong>
-            <i class="fas fa-pen text-dark float-right edit-jabber mr-4"></i> </a>
-            <i class='fas fa-trash-alt text-danger float-right delete-jabber mr-4'></i>
+            <i data-id="{{this.id}}" class="fas fa-pen text-dark float-right edit-jabber mr-4"></i>
+            <i data-id="{{this.id}}" class='fas fa-trash-alt text-danger float-right delete-jabber mr-4'></i>
             <i class="fas fa-thumbs-up float-right mr-4">{{this.like}}</i></p>
             <p>Location: 
               {{#if this.place}}
@@ -23,13 +23,13 @@
     <hr>
     <div class="row">
       {{#each othersJabber}}
-        <div class="col-sm-4">
+        <div class="col-sm-4 mt-sm-4">
           <div class="card h-100">
               <div class="card-body">
                 <img src={{this.User.avatar}} class="card-img-top" alt="Avatar">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><em>{{this.User.firstName}} {{this.User.lastName}}</em></li>
-                  <li id={{this.id}} class="list-group-item"><strong>{{this.description}} </strong><i class="fas fa-thumbs-up float-right like-jabber mr-4">{{this.like}}</i></li>
+                  <li id={{this.id}} class="list-group-item"><strong>{{this.description}} </strong><i data-id="{{this.id}}" class="fas fa-thumbs-up float-right like-jabber mr-4">{{this.like}}</i></li>
                   <li class="list-group-item">Location: {{#if this.place}}
                         {{this.place}}
                         {{#if this.state}}
