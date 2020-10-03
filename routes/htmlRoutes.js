@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const moment = require('moment');
 const { Op } = require('sequelize');
 module.exports = (db) => {
   // Load register page
@@ -35,6 +36,14 @@ module.exports = (db) => {
     console.log('In html route get /');
     if (req.isAuthenticated()) {
     // Add a clear of 7 day old Jabbers here.
+
+      db.jabbers.destroyAll({
+        where: {
+          createdAt: {
+            $gte: moment().subtract(1, 'days').toDate()
+          }
+        }
+      });
       res.redirect('/dashboard');
     } else {
       res.render('login-dashboard');
