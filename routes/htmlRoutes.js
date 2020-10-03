@@ -31,8 +31,12 @@ module.exports = (db) => {
   // Load dashboard page after clearing one week old Jabbers
   router.get('/', (req, res) => {
     console.log('In html route get /');
+    if (req.isAuthenticated()) {
     // Add a clear of 7 day old Jabbers here.
-    res.redirect('/dashboard');
+      res.redirect('/dashboard');
+    } else {
+      res.render('login-dashboard');
+    }
   });
   // Load dashboard page
   router.get('/dashboard', (req, res) => {
