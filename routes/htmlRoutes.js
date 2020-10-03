@@ -9,6 +9,7 @@ module.exports = (db) => {
       res.render('register');
     }
   });
+
   // Load profile page
   router.get('/profile', (req, res) => {
     if (req.isAuthenticated()) {
@@ -28,12 +29,18 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
+
   // Load dashboard page after clearing one week old Jabbers
   router.get('/', (req, res) => {
     console.log('In html route get /');
+    if (req.isAuthenticated()) {
     // Add a clear of 7 day old Jabbers here.
-    res.redirect('/dashboard');
+      res.redirect('/dashboard');
+    } else {
+      res.render('login-dashboard');
+    }
   });
+
   // Load dashboard page
   router.get('/dashboard', (req, res) => {
     console.log('In html route get /dashboard');
@@ -56,6 +63,7 @@ module.exports = (db) => {
       res.render('login-dashboard');
     }
   });
+
   // Load jabber index page -- May be a duplicate
   router.get('/jabber', function (req, res) {
     if (req.isAuthenticated()) {
@@ -71,6 +79,7 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
+
   // Load Jabber page and pass in an Jabber by id  -- This may not be needed!
   router.get('/jabber/:id', function (req, res) {
     if (req.isAuthenticated()) {
@@ -83,6 +92,7 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
+
   // Logout
   router.get('/logout', (req, res, next) => {
     req.logout();
@@ -94,6 +104,7 @@ module.exports = (db) => {
       res.redirect('/');
     });
   });
+
   // Render 404 page for any unmatched routes
   router.get('*', function (req, res) {
     res.render('404');
