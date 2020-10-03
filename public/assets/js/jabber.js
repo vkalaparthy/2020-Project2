@@ -75,7 +75,8 @@ const handleFormSubmit = function (event) {
 
 const handleJabberEdit = function (event) {
   event.preventDefault();
-  const jabberId = $(event.currentTarget.parentElement.parentElement).attr('id');
+  const jabberId = $(this).data('id');
+  console.log(jabberId);
   window.location.href = '/jabber/' + jabberId;
 };
 
@@ -100,9 +101,7 @@ const handlejabberUpdate = function (event) {
 };
 
 const handleJabberDelete = function (event) {
-  const jabberId = $(event.currentTarget.parentElement.parentElement).attr('id');
-  // console.log('deleeeeeeete');
-  // console.log(jabberId);
+  const jabberId = $(this).data('id');
   API.deleteJabber(jabberId);
   window.location.href = '/dashboard';
 };
