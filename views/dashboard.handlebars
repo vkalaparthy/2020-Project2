@@ -34,7 +34,7 @@
                   <li class="list-group-item">Location: {{#if this.place}}
                         {{this.place}}
                         {{#if this.state}}
-                        , {{this.state}} 
+                        , {{this.state}}  <a href="https://www.openstreetmap.org/search?query={{this.place}} {{this.state}}" target="_blank">Map to this location</a>
                         {{/if}}
                       {{/if}}
                     </li>
