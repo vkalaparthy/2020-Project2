@@ -6,6 +6,7 @@ const $submitBtn = $('#submit');
 const $editJabber = $('.edit-jabber');
 const $deleteJabber = $('.delete-jabber');
 const $updateJabber = $('#update-jabber');
+const $cancelUpdate = $('#cancel-update');
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -27,7 +28,7 @@ const API = {
   },
   updateJabber: function (jabberData) {
     return $.ajax({
-      url: 'api/jabbers/' + jabberData.id,
+      url: '/api/jabbers/' + jabberData.id,
       type: 'PUT',
       data: jabberData
     });
@@ -80,14 +81,22 @@ const handleJabberEdit = function (event) {
 
 const handlejabberUpdate = function (event) {
   event.preventDefault();
-  console.log('#################');
-  console.log(event.currentTarget.parentElement.parentElement);
-  // const newData = {
-  //   id: 1
-  // };
-  // API.updateJabber(newData).then(function () {
-  //   window.location.href = '/dashboard';
-  // });
+  // console.log('#################');
+  const jabberId = $(event.currentTarget).data('id');
+  console.log(jabberId);
+  // capture all changes
+  const updatedJabber = {
+    id: jabberId,
+    description: $('#jabber-description').val().trim(),
+    place: $('#jabber-place').val().trim(),
+    state: $('#jabber-state').val().trim(),
+    UserId: window.userId
+  };
+  // console.log($('#jabber-description').val().trim());
+
+  API.updateJabber(updatedJabber).then(function () {
+    window.location.href = '/dashboard';
+  });
 };
 
 const handleJabberDelete = function (event) {
@@ -95,6 +104,11 @@ const handleJabberDelete = function (event) {
   // console.log('deleeeeeeete');
   // console.log(jabberId);
   API.deleteJabber(jabberId);
+  window.location.href = '/dashboard';
+};
+
+const handleUpdateCancel = function (event) {
+  event.preventDefault();
   window.location.href = '/dashboard';
 };
 
@@ -109,3 +123,6 @@ $deleteJabber.on('click', handleJabberDelete);
 
 // Add event listener to update the jabber
 $updateJabber.on('click', handlejabberUpdate);
+
+// add event listener to cancel in jabber-form
+$cancelUpdate.on('click', handleUpdateCancel);
