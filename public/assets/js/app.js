@@ -23,7 +23,7 @@ $('#add-user').on('click', function (event) {
       type: 'POST',
       url: '/api/register',
       data: newAccount
-    }).then(() => {
+    }).then((res) => {
       window.location.href = '/';
     });
   } else {
