@@ -1,8 +1,6 @@
 $('#add-user').on('click', function (event) {
   event.preventDefault();
   const gender = $('#genders').val();
-  console.log('***************');
-  console.log(gender);
   let avatar = '';
   if (gender === 'Female') {
     avatar = '/assets/images/woman.jpg';
@@ -20,7 +18,7 @@ $('#add-user').on('click', function (event) {
     avatar: avatar
   };
 
-  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.lastName.length > 0 && newAccount.firstName.length > 0) {
+  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.lastName.length > 0 && newAccount.firstName.length > 0 && newAccount.gender.length > 0) {
     $.ajax({
       type: 'POST',
       url: '/api/register',
@@ -29,8 +27,7 @@ $('#add-user').on('click', function (event) {
       window.location.href = '/';
     });
   } else {
-    console.log('**Please fill out entire form**');
-    $('#create-err-msg').empty('').text('**Please fill out entire form**');
+    window.location.href = '/register-failed';
   }
 });
 

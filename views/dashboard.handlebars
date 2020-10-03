@@ -4,20 +4,19 @@
   <div class="app-container">
     <ul>
       {{#each currentUsersJabber}}
-        <li id="{{this.id}}" class="list-group-item">
+        <li data-id="{{this.id}}" class="list-group-item">
           <p>
-            <strong> {{this.description}} </strong>
+            {{this.description}}
             <i class="fas fa-pen text-dark float-right edit-jabber mr-4"></i> </a>
             <i class='fas fa-trash-alt text-danger float-right delete-jabber mr-4'></i>
             {{!-- <i class="fas fa-thumbs-up float-right mr-4"> {{this.like}}</i> --}}
             <i class="fas fa-thumbs-up float-right mr-4"> 10</i></p>
-            <p>Location: {{#if this.place}}
-              {{this.place}}
-                {{#if this.state}}
-                  , {{this.state}} 
-                {{/if}}
+            <p> {{#if this.place}}
+              at {{this.place}}
+              {{#if this.state}}
+               , {{this.state}}
               {{/if}}
-            </p>
+            {{/if}}</p>
         </li>
       {{/each}}
     </ul>
@@ -28,17 +27,17 @@
           <div class="card h-100">
               <div class="card-body">
                 <img src={{this.User.avatar}} class="card-img-top" alt="Avatar">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><em>{{this.User.firstName}} {{this.User.lastName}}</em></li>
-                  <li id={{this.id}} class="list-group-item"><strong>{{this.description}} </strong><i class="fas fa-thumbs-up float-right like-jabber mr-4"> 10</i></li>
-                  <li class="list-group-item">Location: {{#if this.place}}
-                        {{this.place}}
-                        {{#if this.state}}
-                        , {{this.state}}  <a href="https://www.openstreetmap.org/search?query={{this.place}} {{this.state}}" target="_blank">Map to this location</a>
-                        {{/if}}
-                      {{/if}}
-                    </li>
-                </ul>
+                <h5 class="card-text"> {{this.User.firstName}} {{this.User.lastName}}</h5>
+                <p class='jabber-desc'>
+                  {{this.description}}
+                  <i class="fas fa-thumbs-up float-right like-jabber mr-4"> 10</i></p>
+                  <p> {{#if this.place}}
+                    at {{this.place}}
+                    {{#if this.state}}
+                    , {{this.state}}
+                    {{/if}}
+                  {{/if}}</p>
+                </p>
               </div>
           </div>
         </div>
