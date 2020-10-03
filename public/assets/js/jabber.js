@@ -76,15 +76,6 @@ const handleJabberEdit = function (event) {
   event.preventDefault();
   const jabberId = $(event.currentTarget.parentElement.parentElement).attr('id');
   window.location.href = '/jabber/' + jabberId;
-  API.getJabber(jabberId).then((result) => {
-    console.log('0000000000000000');
-    console.log(result.description);
-    console.log(result);
-    console.log('0000000000000000');
-    API.updateJabber(result).then(function () {
-      window.location.href = '/dashboard';
-    });
-  });
 };
 
 const handlejabberUpdate = function (event) {
