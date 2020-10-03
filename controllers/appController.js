@@ -13,7 +13,9 @@ module.exports = function (db) {
     },
     updateJabber: function (req, res) {
       db.Jabber.update({
-        description: req.body.description
+        description: req.body.description,
+        place: req.body.place,
+        state: req.body.state
       }, { where: { id: req.body.id } }).then(function (dbJabber) {
         res.json(dbJabber);
       });
