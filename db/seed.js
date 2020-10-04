@@ -16,12 +16,6 @@ module.exports = (db) => {
       password: process.env.USER_PWD,
       isAdmin: false,
       avatar: '/assets/images/woman.jpg'
-    }).then(() => {
-      db.Example.create({
-        text: 'Sample item',
-        description: 'Adam can\'t see this',
-        UserId: 2
-      });
     });
   });
 };
