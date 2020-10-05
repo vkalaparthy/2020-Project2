@@ -7,16 +7,19 @@
         <li data-id="{{this.id}}" class="list-group-item">
           <p>
             <strong>{{this.description}}</strong>
+            <div>
             <i data-id="{{this.id}}" class="fas fa-pen text-dark float-right edit-jabber mr-4"></i>
             <i data-id="{{this.id}}" class='fas fa-trash-alt text-danger float-right delete-jabber mr-4'></i>
-            <i class="fas fa-thumbs-up float-right mr-4">{{this.like}}</i></p>
-            <p>Location: 
-              {{#if this.place}}
-                {{this.place}}
-                {{#if this.state}}
-                  , {{this.state}} 
-                {{/if}}
-              {{/if}}</p>
+            <i class="fas fa-thumbs-up float-right mr-4">  {{this.like}}</i>
+            </div>
+          </p>
+          Location: 
+          {{#if this.place}}
+            {{this.place}}
+            {{#if this.state}}
+              , {{this.state}} 
+            {{/if}}
+          {{/if}}
         </li>
       {{/each}}
     </ul>
@@ -29,7 +32,7 @@
               <img src={{this.User.avatar}} class="card-img-top" alt="Avatar">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong><em>{{this.User.firstName}} {{this.User.lastName}}</em></strong></li>
-                <li id={{this.id}} class="list-group-item"><strong>{{this.description}} </strong><i data-id="{{this.id}}" class="fas fa-thumbs-up float-right like-jabber mr-4">{{this.like}}</i></li>
+                <li id={{this.id}} class="list-group-item"><strong>{{this.description}} </strong><i data-id="{{this.id}}" class="fas fa-thumbs-up float-right like-jabber mr-2">  {{this.like}}</i></li>
                 <li class="list-group-item">{{#if this.place}}
                   {{this.place}}
                     {{#if this.state}}

@@ -20,9 +20,9 @@ const API = {
       data: JSON.stringify(jabber)
     });
   },
-  getJabbers: function () {
+  getJabber: function (id) {
     return $.ajax({
-      url: 'api/jabbers',
+      url: 'api/jabbers/' + id,
       type: 'GET'
     });
   },
@@ -33,12 +33,6 @@ const API = {
       data: jabberData
     });
   },
-  getJabber: function (id) {
-    return $.ajax({
-      url: 'api/jabbers/' + id,
-      type: 'GET'
-    });
-  },
   deleteJabber: function (id) {
     return $.ajax({
       url: 'api/jabbers/' + id,
@@ -47,8 +41,8 @@ const API = {
   }
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new jabber
+// Save the new jabber to the db and refresh the list
 const handleFormSubmit = function (event) {
   console.log('In handleFormSubmit');
   event.preventDefault();
@@ -73,6 +67,7 @@ const handleFormSubmit = function (event) {
   $jabberDescription.val('');
 };
 
+// Edit the jabber form with current info
 const handleJabberEdit = function (event) {
   event.preventDefault();
   const jabberId = $(this).data('id');
@@ -80,7 +75,8 @@ const handleJabberEdit = function (event) {
   window.location.href = '/jabber/' + jabberId;
 };
 
-const handlejabberUpdate = function (event) {
+// Update the jabber after user corrects the form
+const handleJabberUpdate = function (event) {
   event.preventDefault();
   // console.log('#################');
   const jabberId = $(event.currentTarget).data('id');
@@ -93,17 +89,18 @@ const handlejabberUpdate = function (event) {
     state: $('#jabber-state').val().trim(),
     UserId: window.userId
   };
-  // console.log($('#jabber-description').val().trim());
 
   API.updateJabber(updatedJabber).then(function () {
     window.location.href = '/dashboard';
   });
 };
 
+// Delete the jabber and refresh the screen
 const handleJabberDelete = function (event) {
   const jabberId = $(this).data('id');
   API.deleteJabber(jabberId);
-  window.location.href = '/dashboard';
+  // window.location.href = '/dashboard';
+  location.reload();
 };
 
 const handleUpdateCancel = function (event) {
@@ -121,7 +118,7 @@ $editJabber.on('click', handleJabberEdit);
 $deleteJabber.on('click', handleJabberDelete);
 
 // Add event listener to update the jabber
-$updateJabber.on('click', handlejabberUpdate);
+$updateJabber.on('click', handleJabberUpdate);
 
 // add event listener to cancel in jabber-form
 $cancelUpdate.on('click', handleUpdateCancel);
