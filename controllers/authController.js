@@ -1,7 +1,7 @@
 module.exports = (passport, db) => {
   return {
     register: (req, res) => {
-      if (!req.body.email || !req.body.password || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(req.body.email))) {
+      if (!req.body.email || !req.body.password || !(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(req.body.email))) {
         console.log('Email password required');
         return res.json({ error: { message: 'Email and Password required!' } });
       }
