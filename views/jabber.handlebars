@@ -5,6 +5,7 @@
       <div class="col-8 offset-2">
         <h2>{{msg}}</h2>
         <form class="clearfix mb-4" action="POST">
+
           <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control" id="description" aria-describedby="description" placeholder="A great place for a pinic!"></textarea>
@@ -13,7 +14,8 @@
             <label for="state">State</label>
             <textarea class="form-control" id="state" aria-describedby="state" placeholder="NC"></textarea>
           </div>
-            <button id="submit" class="btn btn-primary float-right">Submit</button>
+            <button id="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="cancel-create" class="btn btn-primary">Cancel</button>
         </form>
       </div>
     </div>

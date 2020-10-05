@@ -7,6 +7,7 @@ const $editJabber = $('.edit-jabber');
 const $deleteJabber = $('.delete-jabber');
 const $updateJabber = $('#update-jabber');
 const $cancelUpdate = $('#cancel-update');
+const $cancelJabberCreate = $('#cancel-create');
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -108,6 +109,11 @@ const handleUpdateCancel = function (event) {
   window.location.href = '/dashboard';
 };
 
+const handleCreateCancel = function (event) {
+  event.preventDefault();
+  window.location.href = '/dashboard';
+};
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on('click', handleFormSubmit);
 
@@ -122,3 +128,6 @@ $updateJabber.on('click', handleJabberUpdate);
 
 // add event listener to cancel in jabber-form
 $cancelUpdate.on('click', handleUpdateCancel);
+
+// Add cancel jabber create
+$cancelJabberCreate.on('click', handleCreateCancel);
