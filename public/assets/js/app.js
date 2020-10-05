@@ -30,6 +30,10 @@ $('#add-user').on('click', function (event) {
         window.location.href = '/';
       }
     });
+  } else {
+    console.log('**Please fill out entire form**');
+    $('#update-err-msg').empty('').text('**Please fill out entire form**');
+    window.location.href = '/register-failed';
   }
 });
 
