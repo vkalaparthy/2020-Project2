@@ -1,6 +1,6 @@
 module.exports = function (db) {
   return {
-    // Get all examples
+    // Get all jabbers
     getJabbers: function (req, res) {
       db.Jabber.findAll({ where: { UserId: req.session.passport.user.id } }).then(function (dbJabber) {
         res.json(dbJabber);
@@ -11,6 +11,7 @@ module.exports = function (db) {
         res.json(dbJabber);
       });
     },
+    // update a jabber -- all values
     updateJabber: function (req, res) {
       db.Jabber.update({
         description: req.body.description,
@@ -20,13 +21,33 @@ module.exports = function (db) {
         res.json(dbJabber);
       });
     },
-    // Create a new example
+    // uppdate jabber like only
+    updateLike: function (req, res) {
+      db.likeby.findOne({ where: { jabberid: req.body.id, userid: req.body.likedUser } }).then(result => {
+        if (!result) { // this use has not liked this jabber, so increment
+          res.send('Success');
+        }
+        let likeValue = req.body.like;
+        if (likeValue === '' || likeValue === null) {
+          likeValue = 1;
+        } else {
+          ++likeValue;
+        }
+        db.Jabber.update({
+          like: likeValue
+        }, { where: { id: req.body.id } }).then(function (dbJabber) {
+          res.json(dbJabber);
+        });
+      });
+      res.send('Success');
+    },
+    // Create a new jabber
     createJabbers: function (req, res) {
       db.Jabber.create(req.body).then(function (dbJabber) {
         res.json(dbJabber);
       });
     },
-    // Delete an example by id
+    // Delete an jabber by id
     deleteJabber: function (req, res) {
       db.Jabber.destroy({ where: { id: req.params.id } }).then(function (dbJabber) {
         res.json(dbJabber);
