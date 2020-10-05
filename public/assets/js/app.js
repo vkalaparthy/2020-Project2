@@ -24,11 +24,15 @@ $('#add-user').on('click', function (event) {
       url: '/api/register',
       data: newAccount
     }).then((res) => {
-      window.location.href = '/';
+      if (res.error) {
+        alert(res.error.message);
+      } else {
+        window.location.href = '/';
+      }
     });
   } else {
     console.log('**Please fill out entire form**');
-    $('#create-err-msg').empty('').text('**Please fill out entire form**');
+    $('#update-err-msg').empty('').text('**Please fill out entire form**');
     window.location.href = '/register-failed';
   }
 });

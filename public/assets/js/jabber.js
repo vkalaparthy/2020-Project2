@@ -8,6 +8,7 @@ const $deleteJabber = $('.delete-jabber');
 const $updateJabber = $('#update-jabber');
 const $cancelUpdate = $('#cancel-update');
 const $cancelJabberCreate = $('#cancel-create');
+const $likeJabber = $('.like-jabber');
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -30,6 +31,13 @@ const API = {
   updateJabber: function (jabberData) {
     return $.ajax({
       url: '/api/jabbers/' + jabberData.id,
+      type: 'PUT',
+      data: jabberData
+    });
+  },
+  updateLike: function (jabberData) {
+    return $.ajax({
+      url: '/api/jabber/' + jabberData.id,
       type: 'PUT',
       data: jabberData
     });
@@ -114,6 +122,23 @@ const handleCreateCancel = function (event) {
   window.location.href = '/dashboard';
 };
 
+const handleJabberLike = function (event) {
+  event.preventDefault();
+  // console.log('#################');
+  const jabberId = $(this).data('id');
+  // console.log(jabberId);
+  const likeValue = $(this).data('value');
+  console.log(likeValue);
+  const likedJabber = {
+    id: jabberId,
+    like: likeValue
+  };
+  API.updateLike(likedJabber).then(function () {
+    window.location.href = '/dashboard';
+    // console.log('back from update');
+  });
+};
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on('click', handleFormSubmit);
 
@@ -131,3 +156,6 @@ $cancelUpdate.on('click', handleUpdateCancel);
 
 // Add cancel jabber create
 $cancelJabberCreate.on('click', handleCreateCancel);
+
+// add event listener to like the jabber icon
+$likeJabber.on('click', handleJabberLike);
