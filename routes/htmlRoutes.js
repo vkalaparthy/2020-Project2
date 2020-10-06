@@ -86,7 +86,7 @@ module.exports = (db) => {
     }
   });
 
-  // Load Jabber page and pass in an Jabber by id  -- This may not be needed!
+  // Load Jabber page and pass in an Jabber by id
   router.get('/jabber/:id', function (req, res) {
     if (req.isAuthenticated()) {
       db.Jabber.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbJabber) {
@@ -99,23 +99,24 @@ module.exports = (db) => {
     } else {
       res.redirect('/');
     }
-
-    // Logout
-    router.get('/logout', (req, res, next) => {
-      req.logout();
-      req.session.destroy((err) => {
-        if (err) {
-          return next(err);
-        }
-        res.clearCookie('connect.sid', { path: '/' });
-        res.redirect('/');
-      });
-    });
-
-    // Render 404 page for any unmatched routes
-    router.get('*', function (req, res) {
-      res.render('404');
-    });
-    return router;
   });
+
+  // Logout
+  router.get('/logout', (req, res, next) => {
+    req.logout();
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.clearCookie('connect.sid', { path: '/' });
+      res.redirect('/');
+    });
+  });
+
+  // Render 404 page for any unmatched routes
+  router.get('*', function (req, res) {
+    res.render('404');
+  });
+
+  return router;
 };
