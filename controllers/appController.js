@@ -15,12 +15,13 @@ module.exports = function (db) {
     updateJabber: function (req, res) {
       db.Jabber.update({
         description: req.body.description,
-        place: req.body.placel,
+        place: req.body.place,
         state: req.body.state
       }, { where: { id: req.body.id } }).then(function (dbJabber) {
         res.json(dbJabber);
       });
     },
+    // update like column in Jabber and also LikedBy if it does not exist
     updateLike: function (req, res) {
       let likeValue = req.body.like;
       // console.log('********  jabberId: ' + req.body.id);
@@ -57,9 +58,10 @@ module.exports = function (db) {
         res.json(dbJabber);
       });
     },
-    // Delete an jabber by id
+    // Delete an jabber by id and destroy rows in likedBy Table
     deleteJabber: function (req, res) {
       db.Jabber.destroy({ where: { id: req.params.id } }).then(function (dbJabber) {
+        db.LikedBy.destroy({ where: { jabberId: req.params.id } });
         res.json(dbJabber);
       });
     }
