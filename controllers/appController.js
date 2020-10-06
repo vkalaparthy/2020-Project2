@@ -15,24 +15,40 @@ module.exports = function (db) {
     updateJabber: function (req, res) {
       db.Jabber.update({
         description: req.body.description,
-        place: req.body.place,
+        place: req.body.placel,
         state: req.body.state
       }, { where: { id: req.body.id } }).then(function (dbJabber) {
         res.json(dbJabber);
       });
     },
-    // uppdate jabber like only
     updateLike: function (req, res) {
       let likeValue = req.body.like;
-      if (likeValue === '' || likeValue === null) {
-        likeValue = 1;
-      } else {
-        ++likeValue;
-      }
-      db.Jabber.update({
-        like: likeValue
-      }, { where: { id: req.body.id } }).then(function (dbJabber) {
-        res.json(dbJabber);
+      // console.log('********  jabberId: ' + req.body.id);
+      const userId = req.session.passport.user.id;
+      // console.log('********  userId: ' + userId);
+      console.log(req.session.passport.user.id);
+      db.LikedBy.findOne({ where: { jabberId: req.body.id, userId: userId } }).then(function (dbLikedBy) {
+        if (!dbLikedBy) { // Not liked before, so add
+          if (likeValue === '' || likeValue === null) {
+            likeValue = 1;
+          } else {
+            ++likeValue;
+          }
+          db.Jabber.update({
+            like: likeValue
+          }, { where: { id: req.body.id } }).then(function (dbJabber) {
+            res.json(dbJabber);
+          });
+          // Also update the likedBy Table
+          db.LikedBy.create({
+            userId: userId,
+            jabberId: req.body.id
+          }).then(function () {
+            res.end('Success');
+          });
+        } else {
+          res.end('Success');
+        }
       });
     },
     // Create a new jabber
