@@ -91,13 +91,15 @@ module.exports = (db) => {
     if (req.isAuthenticated()) {
       db.Jabber.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbJabber) {
         res.render('jabber-detail', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
           jabber: dbJabber
         });
       });
     } else {
       res.redirect('/');
     }
-  });
+
 
   // Logout
   router.get('/logout', (req, res, next) => {
