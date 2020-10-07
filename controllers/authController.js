@@ -80,12 +80,14 @@ module.exports = (passport, db) => {
       });
     },
     deleteUser: (req, res) => {
-      db.User.destroy({
-        where: { id: req.params.id }
-      }).then(() => {
-        res.json(true);
-      }).catch(() => {
-        res.json(false);
+      db.Jabber.destroy({ where: { UserId: req.params.id } }).then(() => {
+        db.User.destroy({
+          where: { id: req.params.id }
+        }).then(() => {
+          res.json(true);
+        }).catch(() => {
+          res.json(false);
+        });
       });
     }
   };
