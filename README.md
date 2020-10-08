@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Huddle
-This is an appication that is designed using Express, Handlebars, Sequelize ORM using MySQL database. Users have to be registered and Authenticated using passport. Huddle page is responsive and use Bootstrap framework.
+This is an appication that is designed using Express, Handlebars, Sequelize ORM using MySQL database. Users have to be registered and Authenticated using passport. Huddle page is responsive and uses Bootstrap framework.
 ## Table of contents
 * [General Info](#general-info)
 * [Technologies](#technologies)
@@ -12,23 +12,25 @@ This is an appication that is designed using Express, Handlebars, Sequelize ORM 
 * [Contributing](#contributing)
 * [Questions](#questions)
 ## General Info 
-This app is available in GitHub at https://github.com/vkalaparthy/2020-Project2  & is deployed in Heroku at [Website](https://project2-team8-dmtv.herokuapp.com/)
+This app is available in GitHub at https://github.com/vkalaparthy/2020-Project2  & is deployed in Heroku at [Heroku Website](https://project2-team8-dmtv.herokuapp.com/).  This app can be customized based of the need.
 ## Techonologies 
 Used NPM Express, Express-Handlebars, Sequelize for app developemnt and bcrypt for password-hashing along with passport for authentication.  Used ESLint to enforce the coding standards with Travis CI.
 ## Features
-This applications need a user registartion.  Once the user is registerd, he/she can  
+This applications need a user registartion.  Registartion needs the complete form to be filled with correct information. Once the user is registerd, he/she can  
+
 Login   
 Jabber   
 See and Like other people's Jabbers  
 Change the user information   
 Logout   
 Delete themselves  
+
 For Jabber:   
 User can post jabbers  
 Edit jabbers   
 Delete jabbers  
-See other people's jabbers  
-Like other people's jabbers   
+See other user's jabbers  
+Like other user's jabbers   
    
 * User Interface after Login:  
 ![userInterface](./public/assets/readmeImg/P2-UI2.JPG)
@@ -46,7 +48,8 @@ FORCE_SYNC=true_or_false
 TU=mysql_user   
 TP=mysql_password  
   
-* Run "nodemon serer.js"    
+* Run "nodemon serer.js"  
+   Note: When running this for the first time, make .env FORCE_SYNC=true, so the seed db entreis are created and then make this false.
   
 * DB Schema  
   
@@ -94,4 +97,3 @@ Only manual testing
  Contact Vani Kalaparthy for any questions:
  * https://github.com/vkalaparthy
  * kalaparthy.vani@gmail.com 
-
