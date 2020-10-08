@@ -19,6 +19,10 @@
             {{#if this.state}}
               , {{this.state}} 
             {{/if}}
+          {{else}} 
+            {{#if this.state}} 
+              {{this.state}}
+            {{/if}}
           {{/if}}
         </li>
       {{/each}}
@@ -37,6 +41,11 @@
                   {{this.place}}
                     {{#if this.state}}
                     , {{this.state}}   <a href="https://www.openstreetmap.org/search?query={{this.place}} {{this.state}}" target="_blank">Location</a>
+                    {{/if}}
+                  {{else}}
+                  {{!-- If user has not provided a place, don't provide a link for location --}}
+                    {{#if this.state}}
+                      {{this.state}}
                     {{/if}}
                   {{/if}}
                 </li>
