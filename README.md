@@ -79,10 +79,10 @@ Below are the Team that worked on this project.
   
    * E-mail: dianna.mack@yahoo.com
    * GitHub: https://github.com/dmack095-07
-   * Portfolio: https:
+   * Portfolio: https: https://mark-speer.github.io/
 * Mark Speer
   
-   * E-mail: 
+   * E-mail: mark.speer11@gmail.com
    * GitHub: https://github.com/mark-speer
    * Portfolio: https://
 
