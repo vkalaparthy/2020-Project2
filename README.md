@@ -13,7 +13,7 @@ This is an appication that is designed using Express, Handlebars, Sequelize ORM 
 * [Questions](#questions)
 ## General Info 
 This app is available in GitHub at https://github.com/vkalaparthy/2020-Project2  & is deployed in Heroku at [Heroku Website](https://project2-team8-dmtv.herokuapp.com/).  This app can be customized based of the need.
-## Techonologies 
+## Technologies 
 Used NPM Express, Express-Handlebars, Sequelize for app developemnt and bcrypt for password-hashing along with passport for authentication.  Used ESLint to enforce the coding standards with Travis CI.
 ## Features
 This applications need a user registartion.  Registartion needs the complete form to be filled with correct information. Once the user is registerd, he/she can  
